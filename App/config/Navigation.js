@@ -1,20 +1,27 @@
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import HomeScreen from '../screens/Home.screen'
-import Options from '../screens/Options.screen'
+import HomeScreen from "../screens/Home.screen";
+import OptionsScreen from "../screens/Options.screen";
 
 const MainStack = createStackNavigator();
 const MainStackScreen = () => (
-  <MainStack.Navigator>
-    <MainStack.Screen name='Home' component={HomeScreen} />
-    <MainStack.Screen name='Options' component={Options} />
+  <MainStack.Navigator
+  // screenOptions={{ headerShown: false }}
+  // initialRouteName="Options"
+  >
+    <MainStack.Screen
+      name="Home"
+      component={HomeScreen}
+      options={{ headerShown: false }}
+    />
+    <MainStack.Screen name="Options" component={OptionsScreen} />
   </MainStack.Navigator>
-)
+);
 
 export default () => (
   <NavigationContainer>
     <MainStackScreen />
   </NavigationContainer>
-)
+);

@@ -7,8 +7,11 @@ import {
   Dimensions,
   Text,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import { format } from "date-fns";
+import { Entypo } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ConversionInput } from "../components/ConversionInput.component";
 import { Button } from "../components/Button.component";
@@ -18,7 +21,7 @@ import colors from "../constants/colors";
 
 const screen = Dimensions.get("window");
 
-export default () => {
+export default ({ navigation }) => {
   const baseCurrency = "USD";
   const quoteCurrency = "GBP";
   const conversionRate = 0.89824;
@@ -28,6 +31,13 @@ export default () => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={colors.blue} />
+
+      <SafeAreaView style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.push("Options")}>
+          <Entypo name="cog" size={32} color={colors.white} />
+        </TouchableOpacity>
+      </SafeAreaView>
+
       <ScrollView scrollEnabled={scrollEnabled}>
         <View style={styles.content}>
           <View style={styles.logoContainer}>
@@ -65,7 +75,11 @@ export default () => {
             )}`}
           </Text>
           <Button text="Reverse Currencies" onPress={() => alert("todo!")} />
-          <KeyboardSpacer onToggle={(keyboardIsVisible) => setScrollEnabled(keyboardIsVisible)} />
+          <KeyboardSpacer
+            onToggle={(keyboardIsVisible) =>
+              setScrollEnabled(keyboardIsVisible)
+            }
+          />
         </View>
       </ScrollView>
     </View>
@@ -79,7 +93,7 @@ const styles = StyleSheet.create({
   },
 
   content: {
-    paddingTop: screen.height * 0.2,
+    paddingTop: screen.height * 0.1,
   },
 
   logoContainer: {
@@ -110,5 +124,10 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 14,
     textAlign: "center",
+  },
+
+  header: {
+    alignItems: "flex-end",
+    marginHorizontal: 20,
   },
 });
