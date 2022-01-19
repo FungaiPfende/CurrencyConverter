@@ -1,7 +1,7 @@
 import React from "react";
 import { StatusBar, FlatList, View, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Entypo } from '@expo/vector-icons' 
+import { Entypo } from "@expo/vector-icons";
 
 import colors from "../constants/colors";
 import currencies from "../data/currencies.json";
@@ -11,12 +11,12 @@ export default ({ navigation }) => {
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={{ backgroundColor: colors.white }}>
+    <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor={colors.white} />
       <FlatList
         data={currencies}
         renderItem={({ item }) => {
-          return <RowItem text={item} onPress={() => navigation.pop()} rightIcon={} />;
+          return <RowItem text={item} onPress={() => navigation.pop()} />;
         }}
         keyExtractor={(item) => item}
         ItemSeparatorComponent={() => <RowSeparator />}
@@ -29,5 +29,7 @@ export default ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-
-})
+  container: {
+    backgroundColor: colors.white,
+  },
+});
